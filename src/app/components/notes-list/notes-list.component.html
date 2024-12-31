@@ -1,0 +1,13 @@
+<div class="container">
+    <h2 class="title">Notes</h2>
+    <ul class="notes-list">
+        @for (note of notes; track note.id) {
+            <li class="note-item">
+                <div class="note-text">
+                    <div class="note-title">{{ note.title }}</div>
+                    <div class="note-content">{{ note.content }}</div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
