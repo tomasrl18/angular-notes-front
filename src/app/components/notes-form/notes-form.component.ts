@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { NoteService, Note } from '../../services/note.service';
 
@@ -10,8 +10,9 @@ import { NoteService, Note } from '../../services/note.service';
   styleUrl: './notes-form.component.css'
 })
 export class NotesFormComponent {
-  title = new FormControl('');
-  content = new FormControl('');
+  note_title = new FormControl('');
+  note_content = new FormControl('');
+  note_category = new FormControl('');
   
   note: Note = {
     id: 0,
@@ -21,11 +22,17 @@ export class NotesFormComponent {
     created_at: ''
   };
 
-  onSubmit(): void {}
+  constructor(private noteService: NoteService, private router: Router) {}
 
-  /* onSubmit(): void {
+  onSubmit(event: Event): void {
+    event.preventDefault();
+
+    this.note.title = this.note_title.value || '';
+    this.note.content = this.note_content.value || '';
+    this.note.category = this.note_category.value || '';
+
     this.noteService.createNote(this.note).subscribe(() => {
       this.router.navigate(['/notes']);
     });
-  } */
+  }
 }

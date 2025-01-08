@@ -1,13 +1,12 @@
 <div class="form-container">
     <h2 class="form-title">Create New Note</h2>
     <form>
-        <!-- Campo para el título -->
         <label for="title">Title</label>
         <input 
             type="text" 
             id="title" 
             name="title" 
-            [formControl]="title" 
+            [formControl]="note_title" 
             required 
             class="form-input"
         />
@@ -16,16 +15,26 @@
         <textarea 
             id="content" 
             name="content" 
-            [formControl]="content" 
+            [formControl]="note_content" 
             required 
             class="form-textarea">
         </textarea>
 
+        <label for="category">Category</label>
+        <input 
+            type="text" 
+            id="category" 
+            name="category" 
+            [formControl]="note_category" 
+            required 
+            class="form-input"
+        />
+
         <div class="form-buttons">
-            <button class="form-button submit-button" (click)="onSubmit()">
-                ➕ Add Note
-            </button>
             <a routerLink="/notes" class="form-button cancel-button">Cancel</a>
+            <button class="form-button submit-button" (click)="onSubmit($event)">
+                Add Note
+            </button>
         </div>
     </form>
 </div>
