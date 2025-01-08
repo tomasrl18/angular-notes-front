@@ -56,3 +56,30 @@
     font-size: 14px;
     margin-top: 5px;
 }
+
+.add-note-link {
+    display: inline-block;
+    text-decoration: none;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-note-link:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.add-note-link:active {
+    background-color: #388E3C;
+    transform: scale(0.95);
+}
+

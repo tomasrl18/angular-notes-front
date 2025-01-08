@@ -1,5 +1,10 @@
 <div class="container">
     <h2 class="title">Notes</h2>
+
+    <a class="add-note-link" [routerLink]="['/notes/create']">
+        ➕ Add New Note
+    </a>
+
     <ul class="notes-list">
         @for (note of notes; track note.id) {
             <li class="note-item">
