@@ -19,7 +19,7 @@ export class NotesListComponent implements OnInit {
     });
   }
 
-  destroyNota(id: number): void {
+  destroy(id: number): void {
     this.noteService.destroyNote(id).subscribe(() => {
       this.notes = this.notes.filter(note => note.id !== id);
     });
