@@ -3,7 +3,9 @@
     margin: 0 auto;
     padding: 20px;
     text-align: center;
-    background-color: #e0e1df;
+    background-color: #afd8a3;
+    border-radius: 10px;
+    box-shadow: 0 2px 50px rgba(154, 222, 86, 0.2);
 }
 
 .title {
