@@ -33,4 +33,8 @@ export class NoteService {
   destroyNote(id: number): Observable<Note> {
     return this.http.delete<Note>(`${this.apiUrl}${id}/`);
   }
+
+  getNoteById(id: number): Observable<Note> {
+    return this.http.get<Note>(`${this.apiUrl}${id}/`);
+  }
 }
