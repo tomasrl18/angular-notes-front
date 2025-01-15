@@ -4,7 +4,7 @@
         <hr class="hr">
         <p class="note-content">{{ note.content }}</p>
         <p class="note-category"><strong>Category:</strong> {{ note.category }}</p>
-        <p class="note-date"><strong>Created At:</strong> {{ note.created_at }}</p>
+        <p class="note-date"><strong>Created At:</strong> {{ getFormattedDate() }}</p>
         
         <a class="back-button" routerLink="/notes">Back to Notes</a>
     </div>
