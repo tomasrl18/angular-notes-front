@@ -8,4 +8,5 @@ export const routes: Routes = [
   { path: 'notes', component: NotesListComponent },
   { path: 'notes/create', component: NotesFormComponent },
   { path: 'notes/:id', component: NoteDetailComponent },
+  { path: 'notes/:id/edit', component: NotesFormComponent }
 ];

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { NoteService, Note } from '../../services/note.service';
 
@@ -22,17 +22,43 @@ export class NotesFormComponent {
     created_at: ''
   };
 
-  constructor(private noteService: NoteService, private router: Router) {}
+  isEditMode = false;
+  noteId: number | null = null;
+
+  constructor(private noteService: NoteService, private router: Router, private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.noteId = Number(this.route.snapshot.paramMap.get('id'));
+
+    if (this.noteId) {
+      this.isEditMode = true;
+      this.noteService.getNoteById(this.noteId).subscribe((note) => {
+        this.note = note;
+        this.note_title.setValue(note.title);
+        this.note_content.setValue(note.content);
+        this.note_category.setValue(note.category);
+      });
+    }
+  }
 
   onSubmit(event: Event): void {
     event.preventDefault();
 
-    this.note.title = this.note_title.value || '';
-    this.note.content = this.note_content.value || '';
-    this.note.category = this.note_category.value || '';
+    const updatedNote: Note = {
+      ...this.note,
+      title: this.note_title.value || '',
+      content: this.note_content.value || '',
+      category: this.note_category.value || '',
+    };
 
-    this.noteService.createNote(this.note).subscribe(() => {
-      this.router.navigate(['/notes']);
-    });
+    if (this.isEditMode && this.noteId !== null) {
+      this.noteService.editNote(this.noteId, updatedNote).subscribe(() => {
+        this.router.navigate(['/notes']);
+      });
+    } else {
+      this.noteService.createNote(updatedNote).subscribe(() => {
+        this.router.navigate(['/notes']);
+      });
+    }
   }
 }
